@@ -119,7 +119,8 @@ add_action( 'widgets_init', 'theme_slug_widgets_init' );
 function theme_slug_scripts() {
 
 	wp_enqueue_style('bootstrap-style', get_template_directory_uri() . '/bootstrap.min.css', array(), '3.3.7', 'all');
-	
+	wp_enqueue_style('fontawesome-style', get_template_directory_uri() . '/css/font-awesome.min.css', array(), '4.7.0', 'all');
+
 	wp_enqueue_style( 'theme-slug-style', get_stylesheet_uri() );
 
 	wp_enqueue_script( 'bootstrap-js', get_template_directory_uri() . '/js/bootstrap.min.js', array('jquery'), '3.3.7', true );
