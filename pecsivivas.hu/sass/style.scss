@@ -28,14 +28,8 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 # Generic
 	- Normalize
 	- Box sizing
-# Base
-	- Typography
-	- Elements
-	- Links
-	- Forms
 ## Layouts
 # Components
-	- Navigation
 	- Posts and pages
 	- Comments
 	- Widgets
@@ -45,7 +39,6 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 # plugins
 	- Jetpack infinite scroll
 # Utilities
-	- Accessibility
 	- Alignments
 
 --------------------------------------------------------------*/
@@ -64,11 +57,6 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 /* Box sizing
 --------------------------------------------- */
 @import "generic/box-sizing";
-
-/*--------------------------------------------------------------
-# Base
---------------------------------------------------------------*/
-@import "base/base";
 
 /*--------------------------------------------------------------
 # Layouts
@@ -92,10 +80,6 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 /*--------------------------------------------------------------
 # Utilities
 --------------------------------------------------------------*/
-
-/* Accessibility
---------------------------------------------- */
-@import "utilities/accessibility";
 
 /* Alignments
 --------------------------------------------- */
