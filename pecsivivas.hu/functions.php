@@ -140,10 +140,17 @@ add_action( 'widgets_init', 'pecsivivas_widgets_init' );
  * Enqueue scripts and styles.
  */
 function pecsivivas_scripts() {
-	wp_enqueue_style( 'pecsivivas-style', get_stylesheet_uri(), array(), _S_VERSION );
-	wp_style_add_data( 'pecsivivas-style', 'rtl', 'replace' );
 
-	wp_enqueue_script( 'pecsivivas-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
+	// loading the original bootstrap style sheet
+	wp_enqueue_style( 'bootstrap-style', get_template_directory_uri() . '/bootstrap.min.css', array(), '5.0.0' );
+
+	// loading my own style sheet with overrides
+	wp_enqueue_style( 'pecsivivas-style', get_stylesheet_uri(), array(), _S_VERSION );
+
+	// wp_style_add_data( 'pecsivivas-style', 'rtl', 'replace' );
+
+	wp_enqueue_script( 'pecsivivas-bootstrap', get_template_directory_uri() . '/js/bootstrap.min.js', array(), '5.0.0', true );
+	// wp_enqueue_script( 'pecsivivas-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -178,3 +185,7 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+/**
+ * Load Bootstrap Menu.
+ */
+require get_template_directory() . '/inc/bootstrap-walker.php';
