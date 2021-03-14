@@ -6,7 +6,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
  *
- * @package Theme_Name
+ * @package pecsivivas
  */
 
 ?>
@@ -15,49 +15,45 @@
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="profile" href="https://gmpg.org/xfn/11">
 
 	<?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>
+<?php wp_body_open(); ?>
 <div id="page" class="site">
+	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'pecsivivas' ); ?></a>
+
 	<header id="masthead" class="site-header">
-		<nav role="navigation">
-			<div class="navbar navbar-static-top navbar-default">
-				<div class="container">
-					<!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-	 
-						<a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php bloginfo( 'name' ) ?>" rel="homepage"><?php bloginfo( 'name' ) ?></a>
-					</div>
-	 
-					<div class="navbar-collapse collapse navbar-responsive-collapse">
-						<?php
-	 
-						$args = array(
-							'theme_location' => 'menu-1',
-							'depth'      => 2,
-							'container'  => false,
-							'menu_class'     => 'nav navbar-nav navbar-right',
-							'walker'     => new Bootstrap_Walker_Nav_Menu()
-							);
+		<div class="site-branding">
+			<?php
+			the_custom_logo();
+			if ( is_front_page() && is_home() ) :
+				?>
+				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+				<?php
+			else :
+				?>
+				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
+				<?php
+			endif;
+			$pecsivivas_description = get_bloginfo( 'description', 'display' );
+			if ( $pecsivivas_description || is_customize_preview() ) :
+				?>
+				<p class="site-description"><?php echo $pecsivivas_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
+			<?php endif; ?>
+		</div><!-- .site-branding -->
 
-						if (has_nav_menu('menu-1')) {
-							wp_nav_menu($args);
-						}
-
-						?>
-	 
-					</div>
-				</div>
-			</div>           
-		</nav>
+		<nav id="site-navigation" class="main-navigation">
+			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'pecsivivas' ); ?></button>
+			<?php
+			wp_nav_menu(
+				array(
+					'theme_location' => 'menu-1',
+					'menu_id'        => 'primary-menu',
+				)
+			);
+			?>
+		</nav><!-- #site-navigation -->
 	</header><!-- #masthead -->
-
-	<div id="content" class="site-content">

@@ -8,33 +8,39 @@
  *
  * @link https://developer.wordpress.org/themes/functionality/custom-headers/
  *
- * @package Theme_Name
+ * @package pecsivivas
  */
 
 /**
  * Set up the WordPress core custom header feature.
  *
- * @uses theme_slug_header_style()
+ * @uses pecsivivas_header_style()
  */
-function theme_slug_custom_header_setup() {
-	add_theme_support( 'custom-header', apply_filters( 'theme_slug_custom_header_args', array(
-		'default-image'          => '',
-		'default-text-color'     => '000000',
-		'width'                  => 1000,
-		'height'                 => 250,
-		'flex-height'            => true,
-		'wp-head-callback'       => 'theme_slug_header_style',
-	) ) );
+function pecsivivas_custom_header_setup() {
+	add_theme_support(
+		'custom-header',
+		apply_filters(
+			'pecsivivas_custom_header_args',
+			array(
+				'default-image'      => '',
+				'default-text-color' => '000000',
+				'width'              => 1000,
+				'height'             => 250,
+				'flex-height'        => true,
+				'wp-head-callback'   => 'pecsivivas_header_style',
+			)
+		)
+	);
 }
-add_action( 'after_setup_theme', 'theme_slug_custom_header_setup' );
+add_action( 'after_setup_theme', 'pecsivivas_custom_header_setup' );
 
-if ( ! function_exists( 'theme_slug_header_style' ) ) :
+if ( ! function_exists( 'pecsivivas_header_style' ) ) :
 	/**
 	 * Styles the header image and text displayed on the blog.
 	 *
-	 * @see theme_slug_custom_header_setup().
+	 * @see pecsivivas_custom_header_setup().
 	 */
-	function theme_slug_header_style() {
+	function pecsivivas_header_style() {
 		$header_text_color = get_header_textcolor();
 
 		/*
@@ -51,16 +57,16 @@ if ( ! function_exists( 'theme_slug_header_style' ) ) :
 		<?php
 		// Has the text been hidden?
 		if ( ! display_header_text() ) :
-		?>
+			?>
 			.site-title,
 			.site-description {
 				position: absolute;
 				clip: rect(1px, 1px, 1px, 1px);
-			}
-		<?php
+				}
+			<?php
 			// If the user has set a custom color for the text use that.
-			else :
-		?>
+		else :
+			?>
 			.site-title a,
 			.site-description {
 				color: #<?php echo esc_attr( $header_text_color ); ?>;

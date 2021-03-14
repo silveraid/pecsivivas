@@ -1,13 +1,18 @@
 <?php
 /**
- * Theme Name functions and definitions
+ * pecsivivas functions and definitions
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
- * @package Theme_Name
+ * @package pecsivivas
  */
 
-if ( ! function_exists( 'theme_slug_setup' ) ) :
+if ( ! defined( '_S_VERSION' ) ) {
+	// Replace the version number of the theme on each release.
+	define( '_S_VERSION', '1.0.0' );
+}
+
+if ( ! function_exists( 'pecsivivas_setup' ) ) :
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
 	 *
@@ -15,14 +20,14 @@ if ( ! function_exists( 'theme_slug_setup' ) ) :
 	 * runs before the init hook. The init hook is too late for some features, such
 	 * as indicating support for post thumbnails.
 	 */
-	function theme_slug_setup() {
+	function pecsivivas_setup() {
 		/*
 		 * Make theme available for translation.
 		 * Translations can be filed in the /languages/ directory.
-		 * If you're building a theme based on Theme Name, use a find and replace
-		 * to change 'theme-slug' to the name of your theme in all the template files.
+		 * If you're building a theme based on pecsivivas, use a find and replace
+		 * to change 'pecsivivas' to the name of your theme in all the template files.
 		 */
-		load_theme_textdomain( 'theme-slug', get_template_directory() . '/languages' );
+		load_theme_textdomain( 'pecsivivas', get_template_directory() . '/languages' );
 
 		// Add default posts and comments RSS feed links to head.
 		add_theme_support( 'automatic-feed-links' );
@@ -43,27 +48,40 @@ if ( ! function_exists( 'theme_slug_setup' ) ) :
 		add_theme_support( 'post-thumbnails' );
 
 		// This theme uses wp_nav_menu() in one location.
-		register_nav_menus( array(
-			'menu-1' => esc_html__( 'Primary', 'theme-slug' ),
-		) );
+		register_nav_menus(
+			array(
+				'menu-1' => esc_html__( 'Primary', 'pecsivivas' ),
+			)
+		);
 
 		/*
 		 * Switch default core markup for search form, comment form, and comments
 		 * to output valid HTML5.
 		 */
-		add_theme_support( 'html5', array(
-			'search-form',
-			'comment-form',
-			'comment-list',
-			'gallery',
-			'caption',
-		) );
+		add_theme_support(
+			'html5',
+			array(
+				'search-form',
+				'comment-form',
+				'comment-list',
+				'gallery',
+				'caption',
+				'style',
+				'script',
+			)
+		);
 
 		// Set up the WordPress core custom background feature.
-		add_theme_support( 'custom-background', apply_filters( 'theme_slug_custom_background_args', array(
-			'default-color' => 'ffffff',
-			'default-image' => '',
-		) ) );
+		add_theme_support(
+			'custom-background',
+			apply_filters(
+				'pecsivivas_custom_background_args',
+				array(
+					'default-color' => 'ffffff',
+					'default-image' => '',
+				)
+			)
+		);
 
 		// Add theme support for selective refresh for widgets.
 		add_theme_support( 'customize-selective-refresh-widgets' );
@@ -73,15 +91,18 @@ if ( ! function_exists( 'theme_slug_setup' ) ) :
 		 *
 		 * @link https://codex.wordpress.org/Theme_Logo
 		 */
-		add_theme_support( 'custom-logo', array(
-			'height'      => 250,
-			'width'       => 250,
-			'flex-width'  => true,
-			'flex-height' => true,
-		) );
+		add_theme_support(
+			'custom-logo',
+			array(
+				'height'      => 250,
+				'width'       => 250,
+				'flex-width'  => true,
+				'flex-height' => true,
+			)
+		);
 	}
 endif;
-add_action( 'after_setup_theme', 'theme_slug_setup' );
+add_action( 'after_setup_theme', 'pecsivivas_setup' );
 
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
@@ -90,62 +111,45 @@ add_action( 'after_setup_theme', 'theme_slug_setup' );
  *
  * @global int $content_width
  */
-function theme_slug_content_width() {
-	$GLOBALS['content_width'] = apply_filters( 'theme_slug_content_width', 640 );
+function pecsivivas_content_width() {
+	$GLOBALS['content_width'] = apply_filters( 'pecsivivas_content_width', 640 );
 }
-add_action( 'after_setup_theme', 'theme_slug_content_width', 0 );
+add_action( 'after_setup_theme', 'pecsivivas_content_width', 0 );
 
 /**
  * Register widget area.
  *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
-function theme_slug_widgets_init() {
-	register_sidebar( array(
-		'name'          => esc_html__( 'Sidebar', 'theme-slug' ),
-		'id'            => 'sidebar-1',
-		'description'   => esc_html__( 'Add widgets here.', 'theme-slug' ),
-		'before_widget' => '<section id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</section>',
-		'before_title'  => '<h4 class="widget-title">',
-		'after_title'   => '</h4>',
-	) );
+function pecsivivas_widgets_init() {
+	register_sidebar(
+		array(
+			'name'          => esc_html__( 'Sidebar', 'pecsivivas' ),
+			'id'            => 'sidebar-1',
+			'description'   => esc_html__( 'Add widgets here.', 'pecsivivas' ),
+			'before_widget' => '<section id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</section>',
+			'before_title'  => '<h2 class="widget-title">',
+			'after_title'   => '</h2>',
+		)
+	);
 }
-add_action( 'widgets_init', 'theme_slug_widgets_init' );
+add_action( 'widgets_init', 'pecsivivas_widgets_init' );
 
 /**
  * Enqueue scripts and styles.
  */
-function theme_slug_scripts() {
+function pecsivivas_scripts() {
+	wp_enqueue_style( 'pecsivivas-style', get_stylesheet_uri(), array(), _S_VERSION );
+	wp_style_add_data( 'pecsivivas-style', 'rtl', 'replace' );
 
-	wp_enqueue_style('bootstrap-style', get_template_directory_uri() . '/bootstrap.min.css', array(), '3.3.7', 'all');
-	wp_enqueue_style('fontawesome-style', get_template_directory_uri() . '/css/font-awesome.min.css', array(), '4.7.0', 'all');
-
-	wp_enqueue_style( 'theme-slug-style', get_stylesheet_uri() );
-
-	wp_enqueue_script( 'bootstrap-js', get_template_directory_uri() . '/js/bootstrap.min.js', array('jquery'), '3.3.7', true );
-
-	wp_enqueue_script( 'theme-slug-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
+	wp_enqueue_script( 'pecsivivas-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
-add_action( 'wp_enqueue_scripts', 'theme_slug_scripts' );
-
-if (!function_exists('ie_scripts')) {
-
-	function ie_scripts() {
-		echo '<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->';
-	    echo '<!-- WARNING: Respond.js doesn\'t work if you view the page via file:// -->';
-	    echo '<!--[if lt IE 9]>';
-	    echo '  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>';
-	    echo '  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>';
-	    echo '<![endif]-->';
-	}
-
-    add_action('wp_head', 'ie_scripts');
-}
+add_action( 'wp_enqueue_scripts', 'pecsivivas_scripts' );
 
 /**
  * Implement the Custom Header feature.
@@ -173,9 +177,4 @@ require get_template_directory() . '/inc/customizer.php';
 if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
-
-/**
- *.Load Bootstrap Menu.
- */
-require get_template_directory() . '/inc/bootstrap-walker.php';
 
