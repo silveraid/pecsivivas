@@ -15,22 +15,26 @@
 get_header();
 ?>
 
-	<main id="primary" class="site-main">
+<div class="container">
+	<div class="row">
+		<div class="col-sm-9 col-lg-9">
 
-		<?php
-		if ( have_posts() ) :
+			<main id="primary" class="site-main">
 
-			if ( is_home() && ! is_front_page() ) :
-				?>
-				<header>
-					<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
-				</header>
 				<?php
-			endif;
+				if ( have_posts() ) :
 
-			/* Start the Loop */
-			while ( have_posts() ) :
-				the_post();
+					if ( is_home() && ! is_front_page() ) :
+						?>
+					<header>
+						<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
+					</header>
+					<?php
+				endif;
+
+				/* Start the Loop */
+				while ( have_posts() ) :
+					the_post();
 
 				/*
 				 * Include the Post-Type-specific template for the content.
@@ -51,7 +55,8 @@ get_header();
 		?>
 
 	</main><!-- #main -->
+</div><!-- closing col-sm-9 -->
 
-<?php
-get_sidebar();
-get_footer();
+	<?php
+	get_sidebar();
+	get_footer();

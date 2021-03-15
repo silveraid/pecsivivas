@@ -10,21 +10,24 @@
 get_header();
 ?>
 
-	<main id="primary" class="site-main">
+<div class="container">
+	<div class="row">
 
-		<?php if ( have_posts() ) : ?>
+		<main id="primary" class="site-main col-md-9 col-lg-9">
 
-			<header class="page-header">
+			<?php if ( have_posts() ) : ?>
+
+				<header class="page-header">
+					<?php
+					the_archive_title( '<h1 class="page-title">', '</h1>' );
+					the_archive_description( '<div class="archive-description">', '</div>' );
+					?>
+				</header><!-- .page-header -->
+
 				<?php
-				the_archive_title( '<h1 class="page-title">', '</h1>' );
-				the_archive_description( '<div class="archive-description">', '</div>' );
-				?>
-			</header><!-- .page-header -->
-
-			<?php
-			/* Start the Loop */
-			while ( have_posts() ) :
-				the_post();
+				/* Start the Loop */
+				while ( have_posts() ) :
+					the_post();
 
 				/*
 				 * Include the Post-Type-specific template for the content.
