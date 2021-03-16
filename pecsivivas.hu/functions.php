@@ -54,6 +54,27 @@ if ( ! function_exists( 'pecsivivas_setup' ) ) :
 			)
 		);
 
+		// First menu column in the footer
+		register_nav_menus(
+			array(
+				'footer-menu-1' => esc_html__( 'Footer Menu 1', 'pecsivivas' ),
+			)
+		);
+
+		// Second menu column in the footer
+		register_nav_menus(
+			array(
+				'footer-menu-2' => esc_html__( 'Footer Menu 2', 'pecsivivas' ),
+			)
+		);
+
+		// Third menu column in the footer
+		register_nav_menus(
+			array(
+				'footer-menu-3' => esc_html__( 'Footer Menu 3', 'pecsivivas' ),
+			)
+		);
+
 		/*
 		 * Switch default core markup for search form, comment form, and comments
 		 * to output valid HTML5.
@@ -129,8 +150,8 @@ function pecsivivas_widgets_init() {
 			'description'   => esc_html__( 'Add widgets here.', 'pecsivivas' ),
 			'before_widget' => '<section id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</section>',
-			'before_title'  => '<h2 class="widget-title">',
-			'after_title'   => '</h2>',
+			'before_title'  => '<h4 class="widget-title">',
+			'after_title'   => '</h4>',
 		)
 	);
 }
@@ -189,3 +210,22 @@ if ( defined( 'JETPACK__VERSION' ) ) {
  * Load Bootstrap Menu.
  */
 require get_template_directory() . '/inc/bootstrap-walker.php';
+// require get_template_directory() . '/inc/class-wp-bootstrap-navwalker.php';
+
+/**
+ * Load paginator function.
+ */
+require get_template_directory() . '/inc/bootstrap-pagination.php';
+
+
+function get_menu_by_location( $location ) {
+	
+    if( empty($location) ) return false;
+
+    $locations = get_nav_menu_locations();
+    if( ! isset( $locations[$location] ) ) return false;
+
+    $menu_obj = get_term( $locations[$location], 'nav_menu' );
+
+    return $menu_obj;
+}

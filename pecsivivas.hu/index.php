@@ -45,7 +45,8 @@ get_header();
 
 			endwhile;
 
-			the_posts_navigation();
+            bootscore_pagination();
+			// the_posts_navigation();
 
 		else :
 

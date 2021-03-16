@@ -14,7 +14,9 @@ if ( ! is_active_sidebar( 'sidebar-1' ) ) {
 
 <div class="col-md-3 col-lg-3">
 <aside id="secondary" class="widget-area">
+	<div class="card card-body bg-light">
 	<?php dynamic_sidebar( 'sidebar-1' ); ?>
+</div>
 </aside><!-- #secondary -->
 </div>
 
