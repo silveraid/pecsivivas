@@ -20,9 +20,8 @@
                 <div class="col-lg-3 col-md-6 col-12">
                     <div class="f-about single-footer">
                         <div class="logo">
-                            <a href="index.html"><img src="assets/images/logo/footer-logo.svg" alt="Logo"></a>
+                            <a href="index.html"><img src="<?php echo get_stylesheet_directory_uri(); ?>/img/kerek_logo.png" alt="Logo"></a>
                         </div>
-                        <p>Some test.</p>
                         <div class="footer-social">
                             <ul>
                                 <li><a href="#"><i class="lni lni-instagram"></i></a></li>
